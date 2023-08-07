@@ -1,0 +1,52 @@
+#include <stdio.h>
+
+// Function for linear search
+int linearSearch(int arr[], int n, int key) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key) {
+            return i; // Return the position of the key if found
+        }
+    }
+    return -1; // Return -1 if the key is not found
+}
+
+int main() {
+    int A[] = {56, 89, 7, 13, 75, 23, 8, 12};
+    int nA = sizeof(A) / sizeof(A[0]);
+    int keyA = 75;
+
+    int B[] = {89, 45, -23, 45, 0, 44, 2};
+    int nB = sizeof(B) / sizeof(B[0]);
+    int keyB = 0;
+
+    int C[] = {45, 67, 56, 65, 34, -2, 100};
+    int nC = sizeof(C) / sizeof(C[0]);
+    int keyC = 90;
+
+    int positionA = linearSearch(A, nA, keyA);
+    int positionB = linearSearch(B, nB, keyB);
+    int positionC = linearSearch(C, nC, keyC);
+
+    printf("A = (56, 89, 7, 13, 75, 23, 8, 12)\n");
+    if (positionA != -1) {
+        printf("Key element %d found in position %d\n", keyA, positionA);
+    } else {
+        printf("Key element %d Not Found\n", keyA);
+    }
+
+    printf("B = (89, 45, -23, 45, 0, 44, 2)\n");
+    if (positionB != -1) {
+        printf("Key element %d found in position %d\n", keyB, positionB);
+    } else {
+        printf("Key element %d Not Found\n", keyB);
+    }
+
+    printf("C = (45, 67, 56, 65, 34, -2, 100)\n");
+    if (positionC != -1) {
+        printf("Key element %d found in position %d\n", keyC, positionC);
+    } else {
+        printf("Key element %d Not Found\n", keyC);
+    }
+
+    return 0;
+}
