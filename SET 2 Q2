@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include <math.h>
+
+int isArmstrong(int number) {
+    int originalNumber = number;
+    int k = 0, sum = 0;
+
+    // Calculate the number of digits (k) in the given number
+    while (number != 0) {
+        number /= 10;
+        k++;
+    }
+
+    number = originalNumber;
+
+    // Compute the k-th power of each digit and sum them up
+    while (number != 0) {
+        int digit = number % 10;
+        sum += pow(digit, k);
+        number /= 10;
+    }
+
+    // Compare the sum with the original number
+    return sum == originalNumber;
+}
+
+int main() {
+    int number1 = 153;
+    if (isArmstrong(number1)) {
+        printf("Input: %d\nOutput: True\n", number1);
+    } else {
+        printf("Input: %d\nOutput: False\n", number1);
+    }
+
+    int number2 = 419;
+    if (isArmstrong(number2)) {
+        printf("Input: %d\nOutput: True\n", number2);
+    } else {
+        printf("Input: %d\nOutput: False\n", number2);
+    }
+
+    return 0;
+}
