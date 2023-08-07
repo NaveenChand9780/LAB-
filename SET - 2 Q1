@@ -1,0 +1,63 @@
+#include <stdio.h>
+
+#define MAX_SIZE 100
+
+void findSubsetSum(int set[], int n, int targetSum, int currentSum, int index, int subset[], int subsetSize) {
+    if (currentSum == targetSum) {
+        printf("Subset is (");
+        for (int i = 0; i < subsetSize; i++) {
+            printf("%d", subset[i]);
+            if (i < subsetSize - 1) {
+                printf(", ");
+            }
+        }
+        printf(")\n");
+        return;
+    }
+
+    for (int i = index; i < n; i++) {
+        if (currentSum + set[i] <= targetSum) {
+            subset[subsetSize] = set[i];
+            findSubsetSum(set, n, targetSum, currentSum + set[i], i + 1, subset, subsetSize + 1);
+        }
+    }
+}
+
+void subsetSum(int set[], int n, int targetSum) {
+    int subset[MAX_SIZE];
+    findSubsetSum(set, n, targetSum, 0, 0, subset, 0);
+}
+
+int main() {
+    int set1[] = {6, 2, 8, 1, 5};
+    int n1 = sizeof(set1) / sizeof(set1[0]);
+    int targetSum1 = 9;
+
+    printf("Set (s) = ");
+    for (int i = 0; i < n1; i++) {
+        printf("%d", set1[i]);
+        if (i < n1 - 1) {
+            printf(", ");
+        }
+    }
+    printf(" sum is %d\n", targetSum1);
+
+    subsetSum(set1, n1, targetSum1);
+
+    int set2[] = {6, -4, 7, -1, 5, 2, 8, 1};
+    int n2 = sizeof(set2) / sizeof(set2[0]);
+    int targetSum2 = 10;
+
+    printf("Set (s) = ");
+    for (int i = 0; i < n2; i++) {
+        printf("%d", set2[i]);
+        if (i < n2 - 1) {
+            printf(", ");
+        }
+    }
+    printf(" sum is %d\n", targetSum2);
+
+    subsetSum(set2, n2, targetSum2);
+
+    return 0;
+}
