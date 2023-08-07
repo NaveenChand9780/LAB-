@@ -1,0 +1,29 @@
+#include <stdio.h>
+
+int reverseNumber(int num) {
+    int reversedNum = 0;
+
+    while (num != 0) {
+        int lastDigit = num % 10;
+        reversedNum = reversedNum * 10 + lastDigit;
+        num /= 10;
+    }
+
+    return reversedNum;
+}
+
+int main() {
+    int num1 = 1234;
+    int reversed1 = reverseNumber(num1);
+    printf("%d - %d\n", num1, reversed1);
+
+    int num2 = 67894;
+    int reversed2 = reverseNumber(num2);
+    printf("%d - %d\n", num2, reversed2);
+
+    int num3 = 45634; // This is not a valid number.
+    int reversed3 = reverseNumber(num3);
+    printf("%d - %d\n", num3, reversed3); // Invalid input
+
+    return 0;
+}
