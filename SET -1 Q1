@@ -1,0 +1,67 @@
+#include <stdio.h>
+
+void swap(int *x, int *y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+void bubbleSort(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                swap(&arr[j], &arr[j + 1]);
+            }
+        }
+    }
+}
+
+void findSumAndDifference(int arr[], int n, int M, int N) {
+    // Step 1: Sort the array in ascending order
+    bubbleSort(arr, n);
+
+    // Step 2: Handle illegal inputs
+    if (M <= 0 || N <= 0 || M > n || N > n) {
+        printf("Illegal input\n");
+        return;
+    }
+
+    // Step 3: Find the M-th maximum and N-th minimum numbers
+    int mth_max = arr[n - M];
+    int nth_min = arr[N - 1];
+
+    // Step 4: Calculate the sum and difference
+    int sum_mth_nth = mth_max + nth_min;
+    int diff_mth_nth = mth_max - nth_min;
+
+    printf("Sum: %d\nDifference: %d\n", sum_mth_nth, diff_mth_nth);
+}
+
+int main() {
+    int arr1[] = {16, 16, 16, 16, 16};
+    int n1 = sizeof(arr1) / sizeof(arr1[0]);
+    int M1 = 0, N1 = 1;
+    findSumAndDifference(arr1, n1, M1, N1);
+
+    int arr2[] = {0, 0, 0, 0};
+    int n2 = sizeof(arr2) / sizeof(arr2[0]);
+    int M2 = 1, N2 = 2;
+    findSumAndDifference(arr2, n2, M2, N2);
+
+    int arr3[] = {-12, -78, -35, -42, -85};
+    int n3 = sizeof(arr3) / sizeof(arr3[0]);
+    int M3 = 3, N3 = 3;
+    findSumAndDifference(arr3, n3, M3, N3);
+
+    int arr4[] = {15, 19, 34, 56, 12};
+    int n4 = sizeof(arr4) / sizeof(arr4[0]);
+    int M4 = 6, N4 = -3;
+    findSumAndDifference(arr4, n4, M4, N4);
+
+    int arr5[] = {85, 45, 65, 75, 95};
+    int n5 = sizeof(arr5) / sizeof(arr5[0]);
+    int M5 = 5, N5 = 2;
+    findSumAndDifference(arr5, n5, M5, N5);
+
+    return 0;
+}
