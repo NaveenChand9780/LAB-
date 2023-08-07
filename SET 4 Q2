@@ -1,0 +1,49 @@
+#include <stdio.h>
+
+// Function to merge two sorted arrays using Merge Sort
+void mergeArrays(int nums1[], int m, int nums2[], int n, int result[]) {
+    int i = 0, j = 0, k = 0;
+
+    while (i < m && j < n) {
+        if (nums1[i] >= nums2[j]) {
+            result[k] = nums1[i];
+            i++;
+        } else {
+            result[k] = nums2[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < m) {
+        result[k] = nums1[i];
+        i++;
+        k++;
+    }
+
+    while (j < n) {
+        result[k] = nums2[j];
+        j++;
+        k++;
+    }
+}
+
+int main() {
+    int nums1[] = {3, 8, 1, 9};
+    int m = sizeof(nums1) / sizeof(nums1[0]);
+
+    int nums2[] = {4, -2, 0, 7};
+    int n = sizeof(nums2) / sizeof(nums2[0]);
+
+    int result[m + n]; // The output array
+
+    mergeArrays(nums1, m, nums2, n, result);
+
+    printf("Merged and sorted array: ");
+    for (int i = 0; i < m + n; i++) {
+        printf("%d ", result[i]);
+    }
+    printf("\n");
+
+    return 0;
+}
